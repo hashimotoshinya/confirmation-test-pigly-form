@@ -27,7 +27,7 @@ class UpdateWeightLogRequest extends FormRequest
             'date' => 'required|date',
             'weight' => ['required', 'numeric', 'regex:/^\d{1,3}(\.\d)?$/'],
             'calories' => ['required', 'numeric'],
-            'exercise_time' => ['required'],
+            'exercise_time' => ['required', 'date_format:H:i'],
             'exercise_content' => ['nullable', 'max:120'],
         ];
     }
@@ -42,6 +42,7 @@ class UpdateWeightLogRequest extends FormRequest
             'calories.required' => '摂取カロリーを入力してください',
             'calories.numeric' => '数字で入力してください',
             'exercise_time.required' => '運動時間を入力してください',
+            'exercise_time.date_format' => '運動時間は00:00形式で入力してください',
             'exercise_content.max' => '120文字以内で入力してください',
         ];
     }

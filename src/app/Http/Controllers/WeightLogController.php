@@ -55,13 +55,11 @@ class WeightLogController extends Controller
         return view('weight_logs.update', compact('weightLog'));
     }
 
-    public function update(UpdateWeightLogRequest $request, $id){
+    public function update(UpdateWeightLogRequest $request, $id)
+    {
         $log = WeightLog::findOrFail($id);
 
         $validated = $request->validated();
-
-        list($hour, $minute) = explode(':', $validated['exercise_time']);
-        $validated['exercise_time'] = ($hour * 60) + $minute;
 
         $log->update($validated);
 

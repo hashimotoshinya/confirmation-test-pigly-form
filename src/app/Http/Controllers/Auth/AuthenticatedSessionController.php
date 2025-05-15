@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    public function create()
+    {
+        return view('auth.login');
+    }
+    
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();

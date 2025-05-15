@@ -2,24 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeightLogController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterUserController;
-use App\Http\Controllers\WeightTargetController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Middleware\EnsureUserIsRegistered;
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/weight_logs', [WeightLogController::class, 'index'])->name('weight_logs.index');
 Route::get('/weight_logs/search', [WeightLogController::class, 'search'])->name('weight_logs.search');
@@ -39,10 +26,6 @@ Route::post('/register/step2', [RegisterUserController::class, 'storeStep2'])->n
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
 
 Route::middleware(['auth', EnsureUserIsRegistered::class])->group(function () {
     Route::get('/weight_logs', [WeightLogController::class, 'index'])->name('weight_logs.index');
